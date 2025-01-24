@@ -12,8 +12,8 @@
         "number": "{{value, number}}",
         "ms": "{{value, number}}",
         "date": "{{value, date}}",
-        "relativeDate": "{{valor, relativaFecha}}",
-        "uptime": "{{value, uptime}}",
+        "relativeDate": "{{value, relativeDate}}",
+        "duration": "{{value, duration}}",
         "months": "me",
         "days": "d",
         "hours": "h",
@@ -31,7 +31,7 @@
     },
     "weather": {
         "current": "Ubicación actual",
-        "allow": "Clic para permitir",
+        "allow": "Pulsa para permitir",
         "updating": "Actualizando",
         "wait": "Espera, por favor"
     },
@@ -77,9 +77,9 @@
         "unknown": "Desconocido",
         "healthy": "Saludable",
         "starting": "Comenzando",
-        "unhealthy": "Insalubre",
+        "unhealthy": "No saludable",
         "not_found": "No encontrado",
-        "exited": "Salida",
+        "exited": "Terminado",
         "partial": "Parcial"
     },
     "ping": {
@@ -120,7 +120,7 @@
         "grid_power": "Red",
         "home_power": "Consumo",
         "charge_power": "Cargador",
-        "watt_hour": "vatio-hora (Wh)"
+        "kilowatt": "kW"
     },
     "flood": {
         "download": "Descarga",
@@ -140,7 +140,7 @@
         "connectionStatusPendingDisconnect": "Desconexión pendiente",
         "connectionStatusDisconnecting": "Desconectando",
         "connectionStatusDisconnected": "Desconectado",
-        "connectionStatusConnected": "Connected",
+        "connectionStatusConnected": "Conectado",
         "uptime": "Tiempo activo",
         "maxDown": "Descarga máxima",
         "maxUp": "Subida máxima",
@@ -226,6 +226,10 @@
         "leech": "Descargas",
         "seed": "Semillas"
     },
+    "develancacheui": {
+        "cachehitbytes": "Bytes encontrados en caché",
+        "cachemissbytes": "Bytes faltantes en caché"
+    },
     "downloadstation": {
         "download": "Descarga",
         "upload": "Subida",
@@ -279,9 +283,9 @@
     },
     "netalertx": {
         "total": "Total",
-        "connected": "Connected",
-        "new_devices": "New Devices",
-        "down_alerts": "Down Alerts"
+        "connected": "Conectado",
+        "new_devices": "Nuevos dispositivos",
+        "down_alerts": "Alertas de caída"
     },
     "pihole": {
         "queries": "Consultas",
@@ -305,6 +309,16 @@
         "stopped": "Detenido",
         "total": "Total"
     },
+    "suwayomi": {
+        "download": "Descargado",
+        "nondownload": "No descargado",
+        "read": "Leer",
+        "unread": "Sin leer",
+        "downloadedread": "Descargado y leído",
+        "downloadedunread": "Descargado y no leído",
+        "nondownloadedread": "No descargado y leído",
+        "nondownloadedunread": "No descargado y no leído"
+    },
     "tailscale": {
         "address": "Dirección",
         "expires": "Caduca en",
@@ -318,6 +332,19 @@
         "minutes": "{{number}}m",
         "seconds": "{{number}}s",
         "ago": "Hace {{value}}"
+    },
+    "technitium": {
+        "totalQueries": "Consultas",
+        "totalNoError": "Éxitos",
+        "totalServerFailure": "Fallas",
+        "totalNxDomain": "Dominios NX",
+        "totalRefused": "Rechazados",
+        "totalAuthoritative": "Autoritarios",
+        "totalRecursive": "Recursivos",
+        "totalCached": "En caché",
+        "totalBlocked": "Bloqueado",
+        "totalDropped": "Descartados",
+        "totalClients": "Clientes"
     },
     "tdarr": {
         "queue": "En cola",
@@ -544,7 +571,7 @@
     "hdhomerun": {
         "channels": "Canales",
         "hd": "Alta definición",
-        "tunerCount": "Tuners",
+        "tunerCount": "Sintonizadores",
         "channelNumber": "Canal",
         "channelNetwork": "Red",
         "signalStrength": "Intensidad",
@@ -827,7 +854,17 @@
     },
     "romm": {
         "platforms": "Plataformas",
-        "totalRoms": "Total ROMs"
+        "totalRoms": "Juegos",
+        "saves": "Guardados",
+        "states": "Estados",
+        "screenshots": "Capturas de pantalla",
+        "totalfilesize": "Tamaño total"
+    },
+    "mailcow": {
+        "domains": "Dominios",
+        "mailboxes": "Buzones de correo",
+        "mails": "Correos",
+        "storage": "Almacenamiento"
     },
     "netdata": {
         "warnings": "Advertencias",
@@ -835,39 +872,39 @@
     },
     "plantit": {
         "events": "Eventos",
-        "plants": "Plants",
+        "plants": "Plantas",
         "photos": "Fotos",
-        "species": "Species"
+        "species": "Especies"
     },
     "gitea": {
         "notifications": "Notificaciones",
         "issues": "Números",
-        "pulls": "Pull Requests"
+        "pulls": "Solicitudes de cambios"
     },
     "stash": {
-        "scenes": "Scenes",
-        "scenesPlayed": "Scenes Played",
-        "playCount": "Total Plays",
-        "playDuration": "Time Watched",
-        "sceneSize": "Scenes Size",
-        "sceneDuration": "Scenes Duration",
+        "scenes": "Escenas",
+        "scenesPlayed": "Escenas reproducidas",
+        "playCount": "Reproducciones totales",
+        "playDuration": "Tiempo visto",
+        "sceneSize": "Tamaño de las escenas",
+        "sceneDuration": "Duración de las escenas",
         "images": "Imágenes",
-        "imageSize": "Tamaño de imagen",
+        "imageSize": "Tamaño de las imágenes",
         "galleries": "Galerías",
-        "performers": "Performers",
-        "studios": "Studios",
+        "performers": "Intérpretes",
+        "studios": "Estudios",
         "movies": "Películas",
         "tags": "Etiquetas",
-        "oCount": "O Count"
+        "oCount": "Cantidad de O"
     },
     "tandoor": {
         "users": "Usuarios",
         "recipes": "Recetas",
-        "keywords": "Keywords"
+        "keywords": "Palabras clave"
     },
     "homebox": {
-        "items": "Items",
-        "totalWithWarranty": "Con Garantía",
+        "items": "Objetos",
+        "totalWithWarranty": "Con garantía",
         "locations": "Ubicaciones",
         "labels": "Etiquetas",
         "users": "Usuarios",
@@ -875,18 +912,103 @@
     },
     "crowdsec": {
         "alerts": "Alertas",
-        "bans": "Bans"
+        "bans": "Baneos"
     },
     "wgeasy": {
-        "connected": "Connected",
+        "connected": "Conectado",
         "enabled": "Activado",
         "disabled": "Desactivado",
         "total": "Total"
     },
     "swagdashboard": {
-        "proxied": "Proxied",
-        "auth": "With Auth",
-        "outdated": "Outdated",
-        "banned": "Banned"
+        "proxied": "Proxy activado",
+        "auth": "Con autenticación",
+        "outdated": "Desactualizado",
+        "banned": "Baneado"
+    },
+    "myspeed": {
+        "ping": "Ping",
+        "download": "Descarga",
+        "upload": "Subida"
+    },
+    "stocks": {
+        "stocks": "Acciones",
+        "loading": "Cargando",
+        "open": "Abierto - Mercado EE. UU.",
+        "closed": "Cerrado - Mercado EE. UU.",
+        "invalidConfiguration": "Configuración inválida"
+    },
+    "frigate": {
+        "cameras": "Cámaras",
+        "uptime": "Tiempo activo",
+        "version": "Versión"
+    },
+    "linkwarden": {
+        "links": "Enlaces",
+        "collections": "Colecciones",
+        "tags": "Etiquetas"
+    },
+    "zabbix": {
+        "unclassified": "No clasificado",
+        "information": "Información",
+        "warning": "Advertencia",
+        "average": "Promedio",
+        "high": "Alto",
+        "disaster": "Desastre"
+    },
+    "lubelogger": {
+        "vehicle": "Vehículo",
+        "vehicles": "Vehículos",
+        "serviceRecords": "Registros de servicio",
+        "reminders": "Recordatorios",
+        "nextReminder": "Siguiente recordatorio",
+        "none": "Nada"
+    },
+    "vikunja": {
+        "projects": "Proyectos activos",
+        "tasks7d": "Tareas que vencen esta semana",
+        "tasksOverdue": "Tareas vencidas",
+        "tasksInProgress": "Tareas en progreso"
+    },
+    "headscale": {
+        "name": "Nombre",
+        "address": "Dirección",
+        "last_seen": "Visto por última vez",
+        "status": "Estado",
+        "online": "En línea",
+        "offline": "Desconectado"
+    },
+    "beszel": {
+        "name": "Nombre",
+        "systems": "Sistemas",
+        "up": "Activo",
+        "down": "Inactivo",
+        "paused": "Pausado",
+        "pending": "Pendiente",
+        "status": "Estado",
+        "updated": "Actualizado",
+        "cpu": "CPU",
+        "memory": "MEM",
+        "disk": "Disco",
+        "network": "RED"
+    },
+    "argocd": {
+        "apps": "Apps",
+        "synced": "Sincronizado",
+        "outOfSync": "Desincronizado",
+        "healthy": "Saludable",
+        "degraded": "Degradado",
+        "progressing": "Progresando",
+        "missing": "Faltantes",
+        "suspended": "Suspendido"
+    },
+    "spoolman": {
+        "loading": "Cargando"
+    },
+    "gitlab": {
+        "groups": "Grupos",
+        "issues": "Números",
+        "merges": "Solicitudes de fusión",
+        "projects": "Proyectos"
     }
 }

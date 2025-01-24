@@ -15,7 +15,7 @@ async function fetchFromPyloadAPI(url, sessionId, params, service) {
   const options = {
     body: params
       ? Object.keys(params)
-          .map((prop) => `${prop}=${params[prop]}`)
+          .map((prop) => `${prop}=${encodeURIComponent(params[prop])}`)
           .join("&")
       : `session=${sessionId}`,
     method: "POST",
@@ -37,7 +37,7 @@ async function fetchFromPyloadAPI(url, sessionId, params, service) {
   try {
     returnData = JSON.parse(Buffer.from(data).toString());
   } catch (e) {
-    logger.error(`Error logging into pyload API: ${JSON.stringify(data)}`);
+    logger.error(`Error communicating with pyload API at ${url}, returned: ${JSON.stringify(data)}`);
     returnData = data;
   }
   return [status, returnData, responseHeaders];
@@ -67,11 +67,11 @@ async function login(loginUrl, service, username, password = "") {
 }
 
 export default async function pyloadProxyHandler(req, res) {
-  const { group, service, endpoint } = req.query;
+  const { group, service, endpoint, index } = req.query;
 
   try {
     if (group && service) {
-      const widget = await getServiceWidget(group, service);
+      const widget = await getServiceWidget(group, service, index);
 
       if (widget) {
         const url = new URL(formatApiCall(widgets[widget.type].api, { endpoint, ...widget }));

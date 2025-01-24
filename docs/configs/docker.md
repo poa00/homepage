@@ -153,6 +153,18 @@ labels:
   - homepage.widget.fields=["field1","field2"] # optional
 ```
 
+Multiple widgets can be specified by incrementing the index, e.g.
+
+```yaml
+labels: ...
+  - homepage.widget[0].type=emby
+  - homepage.widget[0].url=http://emby.home
+  - homepage.widget[0].key=yourembyapikeyhere
+  - homepage.widget[1].type=uptimekuma
+  - homepage.widget[1].url=http://uptimekuma.home
+  - homepage.widget[1].slug=youreventslughere
+```
+
 You can add specify fields for e.g. the [CustomAPI](../widgets/services/customapi.md) widget by using array-style dot notation:
 
 ```yaml
@@ -203,7 +215,7 @@ In order to detect every service within the Docker swarm it is necessary that se
 
 ## Multiple Homepage Instances
 
-The optional field `instanceName` can be configured in [settings.md](settings.md#instance-name) to differentiate between multiple homepage instances.
+The optional field `instanceName` can be configured in [settings.yaml](settings.md#instance-name) to differentiate between multiple homepage instances.
 
 To limit a label to an instance, insert `.instance.{{instanceName}}` after the `homepage` prefix.
 

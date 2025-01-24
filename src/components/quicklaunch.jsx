@@ -69,16 +69,18 @@ export default function QuickLaunch({ servicesAndBookmarks, searchString, setSea
   }, [close, setSearchString, setCurrentItemIndex, setSearchSuggestions]);
 
   function handleSearchChange(event) {
-    const rawSearchString = event.target.value.toLowerCase();
+    const rawSearchString = event.target.value;
     try {
       if (!/.+[.:].+/g.test(rawSearchString)) throw new Error(); // basic test for probably a url
       let urlString = rawSearchString;
-      if (urlString.indexOf("http") !== 0) urlString = `https://${rawSearchString}`;
+      if (urlString.toLowerCase().indexOf("http") !== 0) urlString = `https://${rawSearchString}`;
       setUrl(new URL(urlString)); // basic validation
+      setSearchString(rawSearchString);
+      return;
     } catch (e) {
       setUrl(null);
     }
-    setSearchString(rawSearchString);
+    setSearchString(rawSearchString.toLowerCase());
   }
 
   function handleSearchKeyDown(event) {
@@ -96,6 +98,12 @@ export default function QuickLaunch({ servicesAndBookmarks, searchString, setSea
     } else if (event.key === "ArrowUp" && currentItemIndex > 0) {
       setCurrentItemIndex(currentItemIndex - 1);
       event.preventDefault();
+    } else if (
+      event.key === "ArrowRight" &&
+      results[currentItemIndex] &&
+      results[currentItemIndex].type === "searchSuggestion"
+    ) {
+      setSearchString(results[currentItemIndex].name);
     }
   }
 
@@ -121,7 +129,7 @@ export default function QuickLaunch({ servicesAndBookmarks, searchString, setSea
   useEffect(() => {
     const abortController = new AbortController();
 
-    if (searchString.length === 0) setResults([]);
+    if (searchString.trim().length === 0) setResults([]);
     else {
       let newResults = servicesAndBookmarks.filter((r) => {
         const nameMatch = r.name.toLowerCase().includes(searchString);

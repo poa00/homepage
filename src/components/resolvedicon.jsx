@@ -35,6 +35,35 @@ export default function ResolvedIcon({ icon, width = 32, height = 32, alt = "log
   // check mdi- or si- prefixed icons
   const prefix = icon.split("-")[0];
 
+  if (prefix === "sh") {
+    const iconName = icon.replace("sh-", "").replace(".svg", "").replace(".png", "").replace(".webp", "");
+
+    let extension;
+    if (icon.endsWith(".svg")) {
+      extension = "svg";
+    } else if (icon.endsWith(".webp")) {
+      extension = "webp";
+    } else {
+      extension = "png";
+    }
+
+    return (
+      <Image
+        src={`https://cdn.jsdelivr.net/gh/selfhst/icons@main/${extension}/${iconName}.${extension}`}
+        width={width}
+        height={height}
+        style={{
+          width,
+          height,
+          objectFit: "contain",
+          maxHeight: "100%",
+          maxWidth: "100%",
+        }}
+        alt={alt}
+      />
+    );
+  }
+
   if (prefix in iconSetURLs) {
     // default to theme setting
     let iconName = icon.replace(`${prefix}-`, "").replace(".svg", "");
@@ -72,7 +101,26 @@ export default function ResolvedIcon({ icon, width = 32, height = 32, alt = "log
     const iconName = icon.replace(".svg", "");
     return (
       <Image
-        src={`https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/${iconName}.svg`}
+        src={`https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/${iconName}.svg`}
+        width={width}
+        height={height}
+        style={{
+          width,
+          height,
+          objectFit: "contain",
+          maxHeight: "100%",
+          maxWidth: "100%",
+        }}
+        alt={alt}
+      />
+    );
+  }
+
+  if (icon.endsWith(".webp")) {
+    const iconName = icon.replace(".webp", "");
+    return (
+      <Image
+        src={`https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/${iconName}.webp`}
         width={width}
         height={height}
         style={{
@@ -90,7 +138,7 @@ export default function ResolvedIcon({ icon, width = 32, height = 32, alt = "log
   const iconName = icon.replace(".png", "");
   return (
     <Image
-      src={`https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/${iconName}.png`}
+      src={`https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/${iconName}.png`}
       width={width}
       height={height}
       style={{

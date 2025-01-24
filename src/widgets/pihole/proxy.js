@@ -33,7 +33,7 @@ async function login(widget, service) {
 }
 
 export default async function piholeProxyHandler(req, res) {
-  const { group, service } = req.query;
+  const { group, service, index } = req.query;
   let endpoint = "stats/summary";
 
   if (!group || !service) {
@@ -41,7 +41,7 @@ export default async function piholeProxyHandler(req, res) {
     return res.status(400).json({ error: "Invalid proxy service type" });
   }
 
-  const widget = await getServiceWidget(group, service);
+  const widget = await getServiceWidget(group, service, index);
   if (!widget) {
     logger.error("Invalid or missing widget for service '%s' in group '%s'", service, group);
     return res.status(400).json({ error: "Invalid widget configuration" });
@@ -57,23 +57,27 @@ export default async function piholeProxyHandler(req, res) {
   }
 
   // pihole v6
-  if (!cache.get(`${sessionSIDCacheKey}.${service}`)) {
+  if (!cache.get(`${sessionSIDCacheKey}.${service}`) && widget.key) {
     await login(widget, service);
   }
 
   const sid = cache.get(`${sessionSIDCacheKey}.${service}`);
-  if (!sid) {
+  if (widget.key && !sid) {
     return res.status(500).json({ error: "Failed to authenticate with Pi-hole" });
   }
 
   try {
     logger.debug("Calling Pi-hole API endpoint: %s", endpoint);
-
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    if (sid) {
+      headers["X-FTL-SID"] = sid;
+    } else {
+      logger.debug("Pi-hole request is unauthenticated");
+    }
     [status, , data] = await httpProxy(formatApiCall(widgets[widget.type].api, { ...widget, endpoint }), {
-      headers: {
-        "Content-Type": "application/json",
-        "X-FTL-SID": sid,
-      },
+      headers,
     });
 
     if (status !== 200) {

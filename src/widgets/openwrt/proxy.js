@@ -17,14 +17,14 @@ const PARAMS = {
 };
 
 async function getWidget(req) {
-  const { group, service } = req.query;
+  const { group, service, index } = req.query;
 
   if (!group || !service) {
     logger.debug("Invalid or missing service '%s' or group '%s'", service, group);
     return null;
   }
 
-  const widget = await getServiceWidget(group, service);
+  const widget = await getServiceWidget(group, service, index);
 
   if (!widget) {
     logger.debug("Invalid or missing widget for service '%s' in group '%s'", service, group);
@@ -77,7 +77,7 @@ async function fetchSystem(url) {
   const systemResponse = JSON.parse(data.toString())[1];
   const response = {
     uptime: systemResponse.uptime,
-    cpuLoad: systemResponse.load[1],
+    cpuLoad: (systemResponse.load[1] / 65536.0).toFixed(2),
   };
   return [200, contentType, response];
 }
